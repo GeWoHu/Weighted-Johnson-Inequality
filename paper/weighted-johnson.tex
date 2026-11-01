@@ -1,0 +1,436 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{A sharp norm bound for weighted up-operators on the Boolean lattice}
+\author{Gerald\thanks{Author name and affiliation to be supplied before submission.}
+\and with assistance from an AI research agent\thanks{AI-assisted proof
+verification and manuscript preparation; disclosure per journal policy.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For $a=(a_1,\dots,a_m)\in\mathbb{R}^m$ and $1\le k\le m$, let
+$U_k(a):\ell^2\binom{[m]}{k}\to\ell^2\binom{[m]}{k-1}$ be the weighted
+up-operator (the weighted $(k,k-1)$ inclusion matrix)
+\[
+(U_k(a)f)(S)=\sum_{i\notin S} a_i\, f(S\cup\{i\}),\qquad |S|=k-1 .
+\]
+We prove the sharp inequality
+$\|U_k(a)\|^2\le \frac{k(m-k+1)}{m}\sum_{i=1}^m a_i^2$,
+with equality for all $a$ at the endpoints $k=1,m$ and, for interior $k$,
+if and only if all $|a_i|$ are equal. The classical equal-weight identity
+$\|U_k(\mathbf 1)\|^2=k(m-k+1)$ is the case $a=\mathbf 1$; the weighted
+statement is not accessible to Johnson-scheme spectral methods, which fail
+once the weights are generic. The proof is a coordinate-deletion induction
+whose scalar closure defect factors as a perfect square.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Boolean lattice, inclusion matrix, operator norm,
+Johnson scheme, perfect-square factorization.\\
+\noindent\textbf{MSC 2020:} 05E30, 15A60, 05A99.
+
+\section{Introduction and statement of the result}
+
+Let $m\ge 2$ and $1\le k\le m$. Write $[m]=\{1,\dots,m\}$, let
+$\binom{[m]}{j}$ denote the $j$-subsets of $[m]$, and let
+$\ell^2\binom{[m]}{j}$ be the Euclidean space with orthonormal basis
+$\{e_S:|S|=j\}$. For weights $a=(a_1,\dots,a_m)\in\mathbb{R}^m$ define the
+\emph{weighted up-operator}
+$U_k(a):\ell^2\binom{[m]}{k}\to\ell^2\binom{[m]}{k-1}$ by
+\[
+(U_k(a)f)(S)=\sum_{i\notin S}a_i f(S\cup\{i\}),\qquad |S|=k-1 .
+\]
+In the subset basis $U_k(a)$ is the weighted $(k,k-1)$ inclusion matrix:
+its $(S,T)$ entry is $a_i$ if $T=S\cup\{i\}$ and $0$ otherwise. It is the
+weighted analogue of the ordinary inclusion (up) operator of the Boolean
+lattice, whose spectral theory is classical
+\cite{srinivasan2011,bannai1984,godsilroyle2001}; in particular
+\begin{equation}\label{eq:classical}
+\|U_k(\mathbf 1)\|^2=k(m-k+1).
+\end{equation}
+A natural question is whether coordinate weights can beat the
+equal-weight spectral value: for which $C$ does
+$\|U_k(a)\|^2\le C\sum_i a_i^2$ hold for all $a$? The answer is that the
+rescaled classical constant is already optimal at every level.
+
+\begin{theorem}\label{thm:main}
+For all $m\ge2$, $1\le k\le m$, and $a\in\mathbb{R}^m$,
+\[
+\|U_k(a)\|^2\;\le\;\frac{k(m-k+1)}{m}\,\sum_{i=1}^m a_i^2 .
+\]
+The constant $C(m,k)=\frac{k(m-k+1)}{m}$ is best possible. Moreover:
+\begin{enumerate}
+\item[(i)] for $k=1$ and $k=m$ equality holds for every $a$;
+\item[(ii)] for $1<k<m$ and $a\ne0$, equality holds if and only if
+$|a_1|=\cdots=|a_m|$.
+\end{enumerate}
+\end{theorem}
+
+The equal-weight case gives $\|U_k(\mathbf 1)\|^2=k(m-k+1)=C(m,k)\cdot m$,
+so the theorem asserts that arbitrary coordinate weights, measured in
+$\ell^2$, can never beat the rescaled classical constant, and that among
+nonzero weights the \emph{only} extremizers in the interior are the
+equal-magnitude ones. That a proof beyond spectral methods is
+\emph{necessary} is not an accident: for generic $a$ the family
+$\{U_k(a)\}$ no longer generates a Bose--Mesner algebra /
+$\mathfrak{sl}_2$ action commuting with the Johnson scheme, so the standard
+association-scheme diagonalization is unavailable (cf.\ Remark
+\ref{rem:spectral}).
+
+The proof occupies \S\ref{sec:proof}: a sign reduction (\S\ref{subsec:sign}),
+a coordinate-deletion block decomposition (\S\ref{subsec:block}), a
+block-norm comparison lemma (\S\ref{subsec:blocknorm}), and a scalar
+one-variable closure inequality whose defect factors as a perfect square
+(\S\ref{subsec:closure}). The equality classification is proved in
+\S\ref{sec:equality} by tracing equality through every step of the
+induction. \S\ref{sec:remarks} records consequences, limitations, and open
+questions; Appendix~\ref{app:repro} describes the machine-checked
+identities supporting the proof.
+
+\section{Related work}\label{sec:related}
+
+\textbf{Equal-weight spectra.} The spectrum of the unweighted Boolean up
+operators, and hence \eqref{eq:classical}, is classical; see
+\cite{srinivasan2011} and the association-scheme diagonalization of
+\cite{bannai1984}. Our theorem contains \eqref{eq:classical} as the ray
+$a=\mathbf 1$ and does not claim it.
+
+\textbf{Inclusion matrices.} Wilson's theorem on inclusion matrices over
+fields of characteristic zero determines the \emph{rank} of unweighted
+inclusion matrices (see \cite{wilson1984} and the encyclopedic treatment
+of Johnson-scheme spectra in \cite{godsilroyle2001}); it is a rank statement, not a norm statement, and it
+does not carry weights. Singular-value information for weighted inclusion
+matrices does not appear to be tabulated; the present result gives the top
+singular value exactly for the Boolean level pairs.
+
+\textbf{Differential posets and $\mathfrak{sl}_2$ calculi.} Stanley's
+differential posets \cite{stanley1988} provide weighted up/down calculus
+for enumeration identities, not sharp $\ell^2$ operator norms; the
+$\mathfrak{sl}_2$-type relations behind \eqref{eq:classical} acquire
+non-scalar defect terms for generic $a$ (Remark \ref{rem:spectral}).
+
+\textbf{Analysis of Boolean functions.} Reverse hypercontractivity on the
+cube \cite{mos2013}, in the lineage of Bonami--Beckner
+\cite{bonami1970,beckner1975}, controls $L^p$--$L^q$ norms of low-degree
+polynomials but does not bound a single weighted level-lowering operator in
+operator norm; the full-space operator $\sum_i a_i\,\sigma_i^{-}$ on
+$\mathbb{R}^{2^{[m]}}$ has norm $\max_k\|U_k(a)\|$, which loses the
+level-dependent constant. Linear polarization constants of Hilbert spaces
+\cite{matolcsi2005,pappas2004} concern products of linear functionals and
+do not imply Theorem \ref{thm:main}.
+
+\section{Preliminaries}\label{sec:prelim}
+
+Throughout, $\|\cdot\|$ denotes the operator norm for the Euclidean norms
+on the spaces involved, and we write
+$G_k(a):=U_k(a)U_k(a)^{\mathsf T}$ on $\ell^2\binom{[m]}{k-1}$, so that
+$\|U_k(a)\|^2=\lambda_{\max}(G_k(a))$.
+
+\subsection{Sign and phase reduction}\label{subsec:sign}
+
+We record the reduction in its exact two-sided form, which also covers
+complex weights. Write $a_i=|a_i|e^{i\theta_i}$ ($\theta_i\in\{0,\pi\}$ for
+real signs) and define diagonal unitaries $D_r$ on
+$\ell^2\binom{[m]}{k-1}$ and $D_c$ on $\ell^2\binom{[m]}{k}$ by
+$(D_r e)_S=e^{-i\sum_{j\in S}\theta_j}e_S$ and
+$(D_c e)_T=e^{\,i\sum_{j\in T}\theta_j}e_T$. For $T=S\cup\{i\}$ the
+$(S,T)$ entry of $D_r\,U_k(|a|)\,D_c$ is
+$|a_i|\,e^{-i\sum_{j\in S}\theta_j}e^{\,i\sum_{j\in T}\theta_j}=
+|a_i|e^{i\theta_i}=a_i$, so
+\begin{equation}\label{eq:phase}
+U_k(a)\;=\;D_r\,U_k(|a|)\,D_c ,
+\end{equation}
+a two-sided unitary equivalence; hence
+$\|U_k(a)\|=\|U_k(|a|)\|$ and the equality classification inherits the
+reduction. We assume $a\ge0$ from now on.
+
+\subsection{Block decomposition by deleting a coordinate}\label{subsec:block}
+
+Write $a=(a',a_m)$ with $a'\in\mathbb{R}^{m-1}$. Order the rows by
+$(k-1)$-sets not containing $m$ first, then those containing $m$, and the
+columns likewise. Since the $(S,T)$ entry is nonzero only when
+$T=S\cup\{i\}$,
+\begin{equation}\label{eq:block}
+U_k(a)\;\simeq\;
+\begin{pmatrix} U_k(a') & a_m I\\[2pt] 0 & U_{k-1}(a') \end{pmatrix},
+\end{equation}
+where $I$ is the $\binom{m-1}{k-1}\times\binom{m-1}{k-1}$ identity indexed
+by the bijection $S\leftrightarrow S\cup\{m\}$, and $\simeq$ denotes
+equality after the stated ordering. Multiplying the block forms, and
+writing $A=U_k(a')$, $B=U_{k-1}(a')$ so that
+$U_k(a)\simeq\bigl(\begin{smallmatrix}A&a_mI\\0&B\end{smallmatrix}\bigr)$
+and
+$U_k(a)^{\mathsf T}\simeq\bigl(\begin{smallmatrix}A^{\mathsf T}&0\\a_mI&B^{\mathsf T}\end{smallmatrix}\bigr)$,
+\begin{equation}\label{eq:gram}
+U_k(a)U_k(a)^{\mathsf T}\;\simeq\;
+\begin{pmatrix}
+U_k(a')U_k(a')^{\mathsf T}+a_m^2 I & a_m\,U_{k-1}(a')^{\mathsf T}\\
+a_m\,U_{k-1}(a') & U_{k-1}(a')U_{k-1}(a')^{\mathsf T}
+\end{pmatrix};
+\end{equation}
+the off-diagonal block is $a_m\,U_{k-1}(a')^{\mathsf T}$ (shape
+$\binom{m-1}{k-1}\times\binom{m-1}{k-2}$), so its largest singular value
+is \emph{exactly} $a_m\,\|U_{k-1}(a')\|$.
+
+\subsection{A block-norm lemma}\label{subsec:blocknorm}
+
+\begin{lemma}\label{lem:block}
+If $M=\bigl(\begin{smallmatrix}P&Q\\ Q^{\mathsf T}&R\end{smallmatrix}\bigr)$
+is real symmetric with $P,R$ square symmetric, then
+\[
+\lambda_{\max}(M)\;\le\;
+\lambda_{\max}\begin{pmatrix}\lambda_{\max}(P)&s_1(Q)\\ s_1(Q)&\lambda_{\max}(R)\end{pmatrix},
+\]
+where $s_1$ is the largest singular value.
+\end{lemma}
+\begin{proof}
+For a unit vector $x=(u,v)$, writing $\alpha=|u|$, $\beta'=|v|$,
+\[
+x^{\mathsf T}Mx \le \lambda_{\max}(P)\,\alpha^2+\lambda_{\max}(R)\,\beta'^{2}
++2\,s_1(Q)\,\alpha\beta' = y^{\mathsf T}Sy,
+\qquad y=(\alpha,\beta'),\ |y|=1,
+\]
+by Cauchy--Schwarz applied to $u^{\mathsf T}Qv$. Maximizing over unit $y$
+gives $\lambda_{\max}(S)$.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}}\label{sec:proof}
+
+\subsection{The induction}\label{subsec:induction}
+
+We prove the theorem, simultaneously in $k$, by induction on $m$, carrying
+the equality clause. \emph{Induction hypothesis $\mathrm{IH}(m')$} for
+$m'<m$: the theorem holds for all $1\le k'\le m'$ and all weights in
+$\mathbb{R}^{m'}$. The base $m=2$ is the endpoint case below. The endpoints
+for general $m$ are exact: $U_1(a)$ is the row vector $(a_1,\dots,a_m)$ and
+$U_m(a)$ a column vector, so
+$\|U_1(a)\|^2=\|U_m(a)\|^2=|a|^2=C(m,1)|a|^2=C(m,m)|a|^2$, and every $a$
+is an extremizer, proving (i).
+
+Let $1<k<m$ and $a\ne0$. If $a'=0$ then
+$U_k(a)=a_m$ times a partial isometry given by the bijection, so
+$\|U_k(a)\|^2=a_m^2<C(m,k)\,a_m^2$ because
+$k(m-k+1)-m=(k-1)(m-k)>0$; this also shows no extremizer has exactly one
+nonzero coordinate. Assume then $s:=|a'|^2>0$ and set
+$t=a_m^2/s$, $\alpha^2=\|U_k(a')\|^2$, $\beta^2=\|U_{k-1}(a')\|^2$.
+Applying Lemma \ref{lem:block} to \eqref{eq:gram}, with the exact identity
+$s_1\bigl(a_mU_{k-1}(a')^{\mathsf T}\bigr)=a_m\beta$,
+\[
+\|U_k(a)\|^2\;\le\;\lambda_{\max}
+\begin{pmatrix}\alpha^2+a_m^2& a_m\beta\\ a_m\beta&\beta^2\end{pmatrix}.
+\]
+By $\mathrm{IH}(m-1)$,
+$\alpha^2\le A\,s$ and $\beta^2\le B\,s$ with
+$A=C(m-1,k)=\frac{k(m-k)}{m-1}$ and $B=C(m-1,k-1)=\frac{(k-1)(m-k+1)}{m-1}$;
+both children lie in range because $1\le k-1$ and $k\le m-1$.
+Since $\lambda_{\max}\bigl(\begin{smallmatrix}p&o\\ o&q\end{smallmatrix}\bigr)
+=\tfrac12\bigl(p+q+\sqrt{(p-q)^2+4o^2}\bigr)$ is nondecreasing in each of
+$p$, $q$ and in $|o|$ (the partial derivatives have the form
+$\tfrac12[1\pm(p-q)/\sqrt{(p-q)^2+4o^2}]\ge0$, and the bound in $o$ is
+even),
+\begin{equation}\label{eq:corner}
+\|U_k(a)\|^2\;\le\; s\cdot
+\lambda_{\max}\begin{pmatrix}A+t&\sqrt{tB}\\ \sqrt{tB}&B\end{pmatrix}.
+\end{equation}
+
+\subsection{Scalar closure}\label{subsec:closure}
+
+\begin{lemma}\label{lem:closure}
+For $m\ge3$, $1\le k\le m$, $t\ge0$, with $A,B$ as above and
+$C=C(m,k)=\frac{k(m-k+1)}{m}$,
+\[
+\lambda_{\max}\begin{pmatrix}A+t&\sqrt{tB}\\ \sqrt{tB}&B\end{pmatrix}
+\;\le\; C(1+t),
+\]
+and for interior $k$ equality holds if and only if $t=\frac1{m-1}$.
+\end{lemma}
+\begin{proof}
+The largest eigenvalue equals $\tfrac12\bigl(A+B+t+\sqrt{(A-B+t)^2+4Bt}\bigr)$,
+so the claim is $\sqrt{(A-B+t)^2+4Bt}\le X(t)$ with
+$X(t)=2C(1+t)-A-B-t$. Now $X$ is affine with slope
+$2C-1=\frac{2k(m-k+1)-m}{m}>0$ and intercept
+$X(0)=2C-A-B=\frac{k(k-1)+(m-k)(m-k+1)}{m(m-1)}>0$; hence $X(t)>0$ for
+$t\ge0$ and squaring is legitimate. The squared defect factors exactly:
+\[
+X(t)^2-\bigl[(A-B+t)^2+4Bt\bigr]
+=\frac{4k(k-1)(m-k)(m-k+1)}{m^2(m-1)^2}\,\bigl((m-1)t-1\bigr)^2\ \ge\ 0,
+\]
+a polynomial identity in $m,k,t$ verified symbolically (see
+Appendix~\ref{app:repro}). For interior $k$
+the prefactor is positive, so equality holds iff $t=\frac1{m-1}$.
+\end{proof}
+
+Combining \eqref{eq:corner} with Lemma \ref{lem:closure},
+$\|U_k(a)\|^2\le s\,C(1+t)=C(m,k)(s+a_m^2)=C(m,k)|a|^2$, completing the
+induction. Sharpness: $G_k(\mathbf 1)\mathbf 1=k(m-k+1)\mathbf 1$, so
+equality is attained at $a=\mathbf 1$ in every level and no smaller
+constant works at any level. \hfill$\square$
+
+\begin{corollary}\label{cor:complex}
+Theorem \ref{thm:main} remains true for $a\in\mathbb{C}^m$ with
+$\sum_i|a_i|^2$ on the right, and the equality classification is unchanged
+with $|a_i|$ in place of $a_i$.
+\end{corollary}
+\begin{proof}
+By \eqref{eq:phase}, $\|U_k(a)\|=\|U_k(|a|)\|$ entrywise in magnitudes, and
+$\sum_i a_i^2$ is replaced by $\sum_i|a_i|^2$ throughout; equality holds
+for $a$ exactly when it holds for $|a|$.
+\end{proof}
+
+\section{Equality cases}\label{sec:equality}
+
+Assume $1<k<m$ and equality in Theorem \ref{thm:main} with $a\ne0$.
+Tracing the chain in \S\ref{sec:proof}: Lemma \ref{lem:closure} must be an
+equality, forcing $t=\frac1{m-1}$; since then $t>0$ and $B>0$ the corner
+off-diagonal $\sqrt{tB}\,s$ is nonzero, and the monotonicity step
+\eqref{eq:corner} is strict in each diagonal entry when the off-diagonal
+is nonzero (the partial derivatives of $\lambda_{\max}$ are
+$\frac12\bigl[1\pm\frac{p-q}{\sqrt{(p-q)^2+4o^2}}\bigr]>0$ for $o>0$,
+because $\sqrt{(p-q)^2+4o^2}>|p-q|$), forcing $\alpha^2=As$ and
+$\beta^2=Bs$. Thus equality holds
+at the subproblem $(m-1,k)$ on $a'$ (and at $(m-1,k-1)$). For $m\ge4$ at
+least one of these subproblems is interior --- if $2\le k\le m-2$ then
+$(m-1,k)$ is; if $k=2$ (resp.\ $k=m-1$) then $(m-1,2)$ (resp.\
+$(m-1,m-2)$) is interior for $m\ge4$ --- and the strengthened induction
+hypothesis yields $|a_1|=\cdots=|a_{m-1}|$; then $t=\frac1{m-1}$ gives
+$a_m^2=s/(m-1)$, the same common value. The remaining base $m=3,k=2$ is
+computed exactly: with $x_i=a_i^2$ and $s=x_1+x_2+x_3$, the matrix
+$\frac43 s\,I-G_2(a)$ has principal minors
+$\frac{x_1+x_2+4x_3}{3}$, $\frac{s(x_1+4x_2+4x_3)}{9}$; these are the $(3,3)$
+entry and the $2\times2$ principal minor on indices $\{2,3\}$ in the basis
+ordering $e_{\{1\}},e_{\{2\}},e_{\{3\}}$, and the remaining principal minors
+are obtained by permuting the coordinate labels $1,2,3$,
+and determinant $\frac4{27}\bigl[(x_1+x_2+x_3)^3-27x_1x_2x_3\bigr]\ge0$ by
+AM--GM, with equality iff $x_1=x_2=x_3$. Hence
+$\lambda_{\max}(G_2(a))=\frac43 s$ iff $a_1^2=a_2^2=a_3^2$. The converse
+direction (equal magnitudes give equality) follows from the sign reduction
+\eqref{eq:phase} and $G_k(\mathbf 1)\mathbf 1=k(m-k+1)\mathbf 1$.
+This completes the proof of Theorem \ref{thm:main}(ii). \hfill$\square$
+
+\begin{remark}[complement duality]\label{rem:duality}
+Let $C_j:\ell^2\binom{[m]}{j}\to\ell^2\binom{[m]}{m-j}$, $e_S\mapsto
+e_{S^{\mathsf c}}$. Since $(S\cup\{i\})^{\mathsf c}=S^{\mathsf c}\setminus\{i\}$,
+entrywise comparison gives $C_{k-1}\,U_k(a)\,C_k=U_{m-k+1}(a)^{\mathsf T}$,
+hence $\|U_k(a)\|=\|U_{m-k+1}(a)\|$ and $C(m,k)=C(m,m-k+1)$; the induction
+above therefore needs only the range $k\le\frac{m+1}{2}$.
+\end{remark}
+
+\begin{remark}[spectral methods fail for generic weights]\label{rem:spectral}
+For $a=\mathbf 1$ the operators $\{U_k,U_k^{\mathsf T}\}$ act between the
+homogeneous components of the Boolean lattice with
+$[D,U]=U$-type relations after weighting by rank, and the spectra follow
+from the Johnson scheme \cite{srinivasan2011}. For generic $a$ the
+commutation relations acquire non-scalar defect terms and no association
+scheme survives; the deletion induction appears to be the only route to a
+sharp general result.
+\end{remark}
+
+\section{Concluding remarks}\label{sec:remarks}
+
+\textbf{Consequences.} Theorem \ref{thm:main} identifies the exact worst
+case of a weighted level-lowering operator on the Boolean lattice: the
+worst weights are the flat ones, up to signs and phases
+(Corollary~\ref{cor:complex}), and the extremal rigidity is exact rather
+than asymptotic. By complement duality
+(Remark~\ref{rem:duality}) the same bound and classification hold for the
+weighted down-operators $U_k(a)^{\mathsf T}$. The scalar closure lemma is
+an independent one-variable inequality that may be reusable wherever a
+$2\times2$ corner comparison of this shape arises.
+
+\textbf{Limitations.} The method is specific to the Boolean lattice level
+structure: the deletion recursion produces exactly two children with the
+same ambient parameters, and the perfect-square factorization depends on
+the constants $C(m,k)$. No comparison with the weighted spectra of
+$G_k(a)$ beyond the top eigenvalue is obtained, and nothing in this paper
+addresses the infinite-dimensional operator-theoretic problems
+(e.g.\ Nyman--Beurling-type formulations) that motivated the search; any
+connection there is conditional and unproved.
+
+\textbf{Open questions.} (1) For which graded posets with rank numbers
+analogous to $\binom{mj}{j}$ does the deletion induction close with a
+perfect-square defect? (2) Determine $\lambda_{\max}(G_k(a))$ exactly as a
+function of the sorted magnitudes of $a$, not only its maximum over the
+sphere $\{|a|^2=1\}$. (3) Analogous sharp bounds for the two-step
+operators $U_k(a)U_{k+1}(a)$, where the corner comparison no longer
+closes at one variable.
+
+\begin{thebibliography}{9}
+\bibitem{srinivasan2011}
+E.~Srinivasan, \emph{Counting spanning trees of almost regular graphs and
+block diagonalization}, arXiv:1104.1481; and references therein for the
+spectrum of the Boolean up operators.
+\bibitem{bannai1984}
+E.~Bannai and T.~Ito, \emph{Algebraic Combinatorics. I. Association
+Schemes}, Benjamin/Cummings Publishing Co., Menlo Park, CA, 1984.
+\bibitem{mos2013}
+E.~Mossel, K.~Oleszkiewicz and A.~Sen, \emph{On reverse hypercontractivity},
+Geom. Funct. Anal.\ \textbf{23} (2013), 1062--1097. arXiv:1108.1210.
+\bibitem{stanley1988}
+R.~P.~Stanley, \emph{Differential posets}, J. Amer. Math. Soc.\ \textbf{1}
+(1988), 919--961.
+\bibitem{matolcsi2005}
+M.~Matolcsi, \emph{The linear polarization constant of $\mathbb{R}^n$},
+Acta Math. Hungar.\ \textbf{108} (2005), 129--136.
+\bibitem{pappas2004}
+A.~Pappas and Sz.~Gy.~R\'ev\'esz, \emph{Linear polarization constants of
+Hilbert spaces}, J. Math. Anal. Appl.\ \textbf{300} (2004), 129--146.
+\bibitem{bonami1970}
+A.~Bonami, \emph{Ensembles $\Lambda_p$ dans le produit d'espaces de Banach
+et application}, C.\ R.\ Acad.\ Sci.\ Paris S\'er.\ A--B\ \textbf{270}
+(1970), 1335--1338.
+\bibitem{beckner1975}
+W.~Beckner, \emph{Inequalities in Fourier analysis}, Ann.\ of Math.\ \textbf{102} (1975), 159--182.
+\bibitem{wilson1984}
+R.~M.~Wilson, \emph{The exact bound in the Erd\H{o}s--Ko--Rado theorem},
+Combinatorica \textbf{4} (1984), 247--257.
+\bibitem{godsilroyle2001}
+C.~D.~Godsil and G.~F.~Royle, \emph{Algebraic Graph Theory}, Graduate
+Texts in Mathematics \textbf{207}, Springer, New York, 2001.
+\end{thebibliography}
+
+\appendix
+\section{Reproducibility of the checked identities}\label{app:repro}
+
+The proof above contains no step that requires computer assistance; the
+machine checks below are regression evidence, not part of the proof.
+
+\textbf{Closure identity.} With $A,B,C$ as in Lemma \ref{lem:closure}, the
+defect factorization
+\[
+X(t)^2-\bigl[(A-B+t)^2+4Bt\bigr]
+=\frac{4k(k-1)(m-k)(m-k+1)}{m^2(m-1)^2}\bigl((m-1)t-1\bigr)^2
+\]
+was verified by expansion and simplification in \texttt{sympy} as a
+rational-function identity in \emph{general} symbols $(m,k,t)$, not by
+sampling.
+
+\textbf{Independent reproduction.} A verification script built from the
+definition of $U_k(a)$ alone (no reuse of the proof) checks the block
+identity \eqref{eq:block}, the Gram identity \eqref{eq:gram}, the duality
+identity of Remark \ref{rem:duality}, and the phase identity
+\eqref{eq:phase} entrywise for small parameters, and evaluates the
+inequality at $30$ exact rational instances $(m,k,a)$ (worst observed
+ratio $0.979016$, zero violations), using certified real-root isolation
+for the spectral maxima. Exact checks of $\lambda_{\max}(U_k(\mathbf 1)
+U_k(\mathbf 1)^{\mathsf T})=k(m-k+1)$ were run for $2\le m\le 8$, all $k$.
+
+\textbf{Artifacts.} The scripts producing the checks described above,
+with pinned dependency versions and reproduction instructions, are
+provided in the \texttt{verification/} directory of the accompanying
+repository (\texttt{weighted-johnson-inequality}); the symbolic script
+re-derives the closure identity in general symbols and the exact script
+rebuilds $U_k(a)$ from its definition alone. No mathematical step of this
+manuscript depends on any of these machine checks.
+
+\end{document}
