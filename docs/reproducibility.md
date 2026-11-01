@@ -19,6 +19,19 @@ Tested with Python 3.12+ on Linux. The symbolic checks (sections 3–4) are
 identities in general symbols; the remaining sections are exact or
 floating-point regression evidence (see `verification/README.md`).
 
+Arithmetic application (Section 6 of the paper):
+
+```
+cd verification
+python3 verify_arithmetic.py        # ends with "ALL PASS"
+```
+
+Rebuilds the squarefree compression from the matrix definition alone and
+checks the compression identity, the cross-level block-diagonality of
+`S*S`, the certified inequality `||S||^2 <= k_max*sum (log p)^2/(p-1)`,
+and the adjoint lower-bound identity. numpy only. Regression evidence;
+the proofs do not depend on it.
+
 ## Provenance of the manuscript
 This repository's `paper/weighted-johnson.tex` is the final submission
 manuscript of the underlying project (frozen 2026-10-31, sha256

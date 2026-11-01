@@ -21,3 +21,13 @@
    with zero mathematical objections; independent human peer review has
    not yet been performed. Finite computational checks are regression
    evidence, not part of the proof.
+6. **Arithmetic application scope (Section 6).** The squarefree-compression
+   bound controls `P_sqf T_N P_sqf` only — not the full operator `T_N`.
+   Non-squarefree entries are not Boolean-lattice edges and are outside the
+   theorem's reach. The estimate is an upper bound; the true order of the
+   compression norm (plausibly `Θ((log N)²)`) is not determined, and the
+   `k_max` factor is an artifact of worst-level control. Nothing in
+   Section 6 implies `||T_N|| = O(log N)`, Nyman–Beurling distance decay,
+   a new zero-free region for `ζ`, or the Riemann Hypothesis. The
+   companion asymptotic constants are exact for the right-hand side, not
+   claimed for the operator norm.

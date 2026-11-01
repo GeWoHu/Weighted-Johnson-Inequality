@@ -31,3 +31,15 @@ closure identity above. No step requires computer assistance. The manuscript
 passed independent adversarial AI review rounds with zero mathematical
 objections; an independent human referee has not yet reviewed it, and this
 package is designed to support exactly that review.
+
+**Arithmetic application (Section 6).** `verify_arithmetic.py` rebuilds the
+squarefree compression `P_sqf T~ P_sqf` from the matrix definition alone and
+checks, at N = 30…1600: (i) the entrywise compression identity against the
+Boolean-incidence construction with `a_p = log p/√(p−1)` (max diff ≤ 1e−16);
+(ii) exact block-diagonality of `S*S` across input levels (cross entries
+0.0); (iii) the certified inequality `||S||² ≤ k_max·Σ_{p≤N}(log p)²/(p−1)`
+via SVD, zero violations with ≥ 4× margin at N = 1600; (iv) the adjoint
+lower-bound identity `||T~* e_1||² = Σ_{2≤k≤N} Λ(k)²/φ(k)` and `T~ e_1 = 0`.
+These are regression/falsification checks only; the Section 6 proofs
+(compression lemma, adjoint accumulation argument, PNT + partial summation)
+are written in full in the paper and stand on their own.

@@ -336,6 +336,172 @@ scheme survives; the deletion induction appears to be the only route to a
 sharp general result.
 \end{remark}
 
+\section{Application to a squarefree arithmetic compression}\label{sec:arithmetic}
+
+We illustrate Theorem~\ref{thm:main} with an operator arising in analytic
+number theory. The application is deliberately restricted: the weighted
+bound controls the \emph{compression} of the arithmetic operator to the
+squarefree indices, and nothing in this section extends that control to
+the full operator.
+
+\subsection{The arithmetic operator and its normalization}
+Fix an integer $N\ge 2$ and write $\mathcal P=\{p\le N: p \text{ prime}\}$,
+$m=\pi(N)$, with $\mathcal P=\{p_1<\dots<p_m\}$. Let $\varphi$ denote
+Euler's function and let $\ell^2(\varphi)$ be $\mathbb C^{\{1,\dots,N\}}$
+with norm $\|y\|_\varphi^2=\sum_{r\le N}\varphi(r)\,|y_r|^2$. Define
+\begin{equation}\label{eq:TN}
+(T_N y)(r)=\sum_{k\le N/r}\Lambda(k)\,y_{rk},\qquad 1\le r\le N,
+\end{equation}
+where $\Lambda$ is the von Mangoldt function. Multiplication by
+$\sqrt\varphi$ is a unitary identification of $\ell^2(\varphi)$ with
+ordinary $\ell^2$, under which $T_N$ becomes the matrix
+\begin{equation}\label{eq:conj}
+\widetilde T_N[r,s]=
+\begin{cases}
+\Lambda(s/r)\,\sqrt{\varphi(r)/\varphi(s)}, & r\mid s,\ s\ne r,\\[2pt]
+0,&\text{otherwise},
+\end{cases}
+\end{equation}
+so that $\|T_N\|_{\ell^2(\varphi)}=\|\widetilde T_N\|_{\ell^2}$ exactly.
+
+Let $P_{\mathrm{sqf}}$ be the orthogonal projection of $\ell^2$ onto the
+span of the squarefree indices. Squarefree integers whose prime factors
+lie in $\mathcal P$ are in bijection with subsets $S\subseteq[m]$ via
+$r\leftrightarrow\{i: p_i\mid r\}$; write $H_j$ for the span of the
+squarefree indices with exactly $j$ prime factors, so that
+$P_{\mathrm{sqf}}\ell^2=\bigoplus_{j\ge 0}H_j$.
+
+\subsection{The compression identity}
+Call $S\subseteq[m]$ admissible if $\prod_{i\in S}p_i\le N$; the
+admissible sets form a down-set (an order ideal), and $H_j$ is
+non-zero for $j\le k_{\max}(N):=\max\{k: p_1\cdots p_k\le N\}$ and zero
+beyond it. For weights $a_i=\log p_i/\sqrt{p_i-1}$, let $V_k$ denote the
+compression of the operator $U_k(a)$ of Theorem~\ref{thm:main} to the
+admissible levels: for $|S|=k-1$ admissible,
+\[
+(V_k f)(S)=\sum_{\substack{i\notin S\\ \prod_{j\in S}p_j\cdot p_i\le N}}
+a_i\, f(S\cup\{i\}),\qquad |S|=k-1,
+\]
+extended to all of $H_k$ by $V_k f=V_k P_{\mathrm{adm},k}f$, where
+$P_{\mathrm{adm},k}$ is the orthogonal projection of $H_k$ onto the span
+of the admissible $k$-sets.
+
+
+\begin{lemma}[compression identity]\label{lem:compression}
+With the notation above,
+\[
+P_{\mathrm{sqf}}\,\widetilde T_N\,P_{\mathrm{sqf}}
+\;=\;\sum_{k=1}^{k_{\max}(N)} V_k
+\qquad\text{(entrywise, exactly).}
+\]
+\end{lemma}
+
+\begin{proof}
+An entry $\widetilde T_N[r,s]$ with $r\mid s$ and $s\ne r$ is non-zero only
+when $s/r$ is a prime power $p^{\,j}$, since $\Lambda$ vanishes elsewhere.
+If $r$ and $s$ are both squarefree and $s=r\,p^{\,j}$ with $j\ge 2$, then
+$p^2\mid s$, a contradiction; hence $j=1$ and $s=rp$ with $p\nmid r$. For
+such a pair, $\varphi(rp)=\varphi(r)(p-1)$, so the entry equals
+$\log p/\sqrt{p-1}=a_p$: the weight of the unique edge $S\to S\cup\{i\}$
+of the Boolean lattice. All other squarefree pairs give a zero entry. The
+survival condition is exactly $s=rp\le N$, i.e.\ admissibility of
+$S\cup\{i\}$, and the level shifts by one. This is entrywise the matrix of
+$\sum_k V_k$ under the subset parametrization.
+\end{proof}
+
+\subsection{The norm estimate}
+
+\begin{theorem}[squarefree compression bound]\label{thm:arithmetic}
+For every $N\ge 2$,
+\[
+\bigl\|P_{\mathrm{sqf}}\,T_N\,P_{\mathrm{sqf}}\bigr\|_{\ell^2(\varphi)}^2
+\;=\;\sup_{1\le k\le k_{\max}(N)}\ \|V_k\|^2
+\;\le\; k_{\max}(N)\sum_{p\le N}\frac{(\log p)^2}{p-1}.
+\]
+Consequently, unconditionally,
+\[
+\bigl\|P_{\mathrm{sqf}}\,T_N\,P_{\mathrm{sqf}}\bigr\|^2
+\;\le\;\Bigl(\tfrac12+o(1)\Bigr)\,\frac{(\log N)^3}{\log\log N}
+\qquad (N\to\infty).
+\]
+\end{theorem}
+
+\begin{proof}
+Each $V_k$ maps $H_k$ into $H_{k-1}$ and vanishes on the other levels:
+$V_k=P_{k-1}V_kP_k$ (support restriction in the domain, range in $H_{k-1}$),
+hence $V_k^{*}=P_kV_k^{*}P_{k-1}$. Therefore for $k\ne j$,
+$V_k^{*}V_j=P_kV_k^{*}P_{k-1}P_{j-1}V_j=0$. Hence, writing $S:=\sum_k V_k$,
+\[
+S^{*}S=\sum_{k}V_k^{*}V_k,
+\qquad
+\langle S^{*}S x,x\rangle=\sum_k \|V_k x_k\|^2
+\le \Bigl(\sup_k\|V_k\|^2\Bigr)\sum_k\|x_k\|^2
+\]
+for $x=\bigoplus_k x_k\in P_{\mathrm{sqf}}\ell^2$, and the reverse
+inequality holds by taking $x$ in a single level. Thus
+$\|S\|^2=\sup_k\|V_k\|^2$; this is an equality, not a triangle-inequality
+accumulation. Compression to the admissible levels cannot increase the
+norm, so $\|V_k\|\le\|U_k(a)\|$, and Theorem~\ref{thm:main} gives
+\[
+\|V_k\|^2\le \frac{k(m-k+1)}{m}\sum_{i=1}^{m}a_i^2
+\le k\sum_{p\le N}\frac{(\log p)^2}{p-1}
+\le k_{\max}(N)\sum_{p\le N}\frac{(\log p)^2}{p-1}.
+\]
+For the asymptotic form we use two standard consequences of the prime
+number theorem (partial summation; see
+Montgomery--Vaughan~\cite{montgomeryvaughan2007}). First,
+$\vartheta(x)=x+o(x)$ gives
+$\log(p_1\cdots p_k)=\vartheta(p_k)\sim k\log k$, so the largest
+achievable level satisfies
+$k_{\max}(N)=(1+o(1))\log N/\log\log N$. Second,
+$\vartheta(x)=x+o(x)$ gives $\sum_{p\le x}(\log p)/p=\log x+o(\log x)$,
+and partial summation then yields
+\[
+\sum_{p\le x}\frac{(\log p)^2}{p}
+=(\log x)^2-\int_2^x\frac{\log t+o(\log t)}{t}\,dt
+=\tfrac12(\log x)^2+o\bigl((\log x)^2\bigr);
+\]
+replacing $1/p$ by $1/(p-1)$ changes the sum by $O(1)$: for $p\ge2$,
+$(\log p)^2/(p(p-1))\le 2(\log p)^2/p^2$, and
+$\sum_p(\log p)^2/p^2\le\sum_{n\ge2}(\log n)^2/n^2<\infty$. Multiplying the two asymptotics
+gives the claim.
+\end{proof}
+
+\begin{remark}[level-one sharpness and scope]\label{rem:scope}
+$V_1$ is a row operator and $\|V_1\|^2=\sum_{p\le N}a_p^2
+=\bigl(\tfrac12+o(1)\bigr)(\log N)^2$, so the level-$k$ use of
+Theorem~\ref{thm:main} is asymptotically sharp at $k=1$, and
+$\|P_{\mathrm{sqf}}T_NP_{\mathrm{sqf}}\|\ge\|V_1\|$ already accounts for
+a $(\log N)^2$ lower growth of the squared norm. Numerical experiments
+(see the repository's \texttt{verification/} directory) indicate that the
+compression norm is attained at $e_1$ for small $N$, suggesting the true
+order of $\|P_{\mathrm{sqf}}T_NP_{\mathrm{sqf}}\|^2$ may be
+$\Theta\bigl((\log N)^2\bigr)$; this is not proved here, and the factor
+$k_{\max}(N)$ in the upper bound should be read as an artifact of
+controlling every level by the worst level.
+\end{remark}
+
+\begin{remark}[what this result does not say]\label{rem:not}
+Theorem~\ref{thm:arithmetic} bounds the compression
+$P_{\mathrm{sqf}}T_NP_{\mathrm{sqf}}$ only. Entries of $\widetilde T_N$
+with a non-squarefree index survive in the two off-diagonal corners and
+in the nonsquarefree block; they are not Boolean-lattice edges and are
+not controlled by Theorem~\ref{thm:main}. In particular, nothing here
+implies $\|T_N\|=O(\log N)$ for the full operator, nor does it address
+Nyman--Beurling distances, zero-free regions for $\zeta$, or the Riemann
+hypothesis. For orientation we record one rigorous complement: since the
+operator lowers indices, $T_N^{*}e_1$ (not $T_Ne_1$, which vanishes)
+satisfies
+\[
+\|T_N\|^2\ \ge\ \|T_N^{*}e_1\|_\varphi^2
+=\sum_{2\le k\le N}\frac{\Lambda(k)^2}{\varphi(k)}
+\ \ge\ \sum_{p\le N}\frac{(\log p)^2}{p-1}
+=\Bigl(\tfrac12+o(1)\Bigr)(\log N)^2 ,
+\]
+so $\|T_N\|\ge(\sqrt2^{\,-1}+o(1))\log N$: a lower bound, in the opposite
+direction from the compression estimate.
+\end{remark}
+
 \section{Concluding remarks}\label{sec:remarks}
 
 \textbf{Consequences.} Theorem \ref{thm:main} identifies the exact worst
@@ -394,6 +560,8 @@ W.~Beckner, \emph{Inequalities in Fourier analysis}, Ann.\ of Math.\ \textbf{102
 \bibitem{wilson1984}
 R.~M.~Wilson, \emph{The exact bound in the Erd\H{o}s--Ko--Rado theorem},
 Combinatorica \textbf{4} (1984), 247--257.
+\bibitem{montgomeryvaughan2007}
+H.~L.~Montgomery and R.~C.~Vaughan, \emph{Multiplicative Number Theory. I. Classical Theory}, Cambridge Studies in Advanced Mathematics \textbf{107}, Cambridge University Press, Cambridge, 2007.
 \bibitem{godsilroyle2001}
 C.~D.~Godsil and G.~F.~Royle, \emph{Algebraic Graph Theory}, Graduate
 Texts in Mathematics \textbf{207}, Springer, New York, 2001.

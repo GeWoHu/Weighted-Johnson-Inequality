@@ -72,6 +72,26 @@ an identity in general `(m, k, t)`, with equality iff `t = 1/(m−1)`.
 Equality cases are obtained by tracing equality through every step.
 See `proofs/proof-outline.md` for the dependency map.
 
+## Arithmetic application (Section 6)
+
+The paper includes a self-contained application: the von Mangoldt operator
+`T_N y(r) = Σ_{k≤N/r} Λ(k) y(rk)` on the weighted space `ℓ²({1..N}, φ)`,
+compressed to squarefree indices. The compression is entrywise a sum of
+weighted Boolean-lattice incidence blocks with prime weights
+`a_p = log p/√(p−1)`, so the main theorem applies level by level, and
+exact level orthogonality (via the adjoint `S*S` argument) gives
+
+```
+||P_sqf T_N P_sqf||² = sup_k ||V_k||² ≤ k_max(N) · Σ_{p≤N} (log p)²/(p−1)
+                     = (1/2 + o(1)) (log N)³ / log log N.
+```
+
+Scope: this bounds the squarefree compression only — **not** the full
+operator `T_N`. The section explicitly disclaims any `||T_N|| = O(log N)`
+consequence, any Nyman–Beurling distance decay, any zero-free region, and
+any RH connection; RH appears in neither title nor abstract. Regression
+code: `verification/verify_arithmetic.py`.
+
 ## Compile the paper
 
 ```
@@ -87,6 +107,10 @@ No custom style files are required (standard `article` class).
 cd verification
 pip install -r requirements.txt   # numpy==2.4.3, sympy==1.14.0
 python3 verify.py                 # ~2–5 min, ends with "ALL RECEIPTS COMPLETE"
+```
+
+```
+python3 verify_arithmetic.py      # Section 6 regression, ends with "ALL PASS"
 ```
 
 The symbolic closure identity is verified as an identity in **general
