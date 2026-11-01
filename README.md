@@ -157,9 +157,28 @@ version exists:
 
 The author's full legal name and affiliation will be supplied before
 submission (placeholder retained deliberately; nothing invented).
-**Licensing:** proposed CC BY 4.0 (text and documentation) and MIT
-(original verification code); not yet activated — until the author's
-license decision is recorded, all rights are reserved.
+
+## License
+
+This is an openly shared, AI-assisted mathematical research result. The
+theorem and proof are publicly available for independent verification and
+reuse. The mathematical statement itself is not claimed as exclusive
+intellectual property.
+
+- **Manuscript, mathematical exposition, and documentation** (paper text,
+  `docs/`, `proofs/`, `README.md`): dedicated to the public domain under
+  [CC0 1.0 Universal](LICENSE-CC0), to the extent possible under law.
+  No attribution is required for reuse of the text.
+- **Verification software** (`verification/`): released under the
+  [MIT License](LICENSE-MIT). MIT's only condition for code reuse is
+  preservation of the copyright and permission notice in copies or
+  substantial portions of the software.
+
+CC0 does not eliminate rights that cannot be waived under some legal
+systems, does not guarantee public-domain status in every jurisdiction,
+and does not affect third-party rights. Independent human mathematical
+peer review has not occurred. No connection to a solution of the Riemann
+Hypothesis is claimed.
 
 ## AI assistance
 
