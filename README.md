@@ -148,7 +148,19 @@ The proof search, symbolic verification, literature screening, and
 manuscript preparation were performed with substantial assistance from an
 AI research agent (LLM-based, 2026). The human author takes full
 responsibility for all claims. No AI system is presented as an author, and
-no AI review is presented as peer review.
+no AI review is presented as peer review. See `docs/ai-assistance.md` for the
+role-by-role disclosure.
+
+## Citation
+
+See `CITATION.cff`. Recommended citation until a journal version exists:
+
+> Gerald, "A Sharp Norm Bound for Weighted Up-Operators on the Boolean
+> Lattice," GitHub repository GeWoHu/weighted-johnson-inequality, commit
+> e46b158, 2026. https://github.com/GeWoHu/weighted-johnson-inequality
+
+Author full name and affiliation will be supplied before journal submission;
+no DOI, journal, or peer-review status is claimed.
 
 ## License
 

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the software repository as follows."
+title: "A Sharp Norm Bound for Weighted Up-Operators on the Boolean Lattice"
+type: software
+authors:
+  - name: "Gerald (full author name to be supplied before submission)"
+repository-code: "https://github.com/GeWoHu/weighted-johnson-inequality"
+date-released: 2026-11-01
+abstract: >-
+  Repository accompanying a mathematical note proving the sharp inequality
+  ||U_k(a)||^2 <= k(m-k+1)/m * sum_i |a_i|^2 for weighted up-operators on
+  the Boolean lattice, with equality classification, and an application to
+  a squarefree arithmetic compression of a von Mangoldt operator.
+keywords:
+  - Boolean lattice
+  - inclusion matrix
+  - operator norm
+  - weighted incidence operator
+  - squarefree compression
+commit: e46b158d6303bb67b41bf15e84b1b090e74820e2
