@@ -1,178 +1,179 @@
 # A Sharp Norm Bound for Weighted Up-Operators on the Boolean Lattice
 
-**Paper:** `paper/weighted-johnson.pdf` (LaTeX source `paper/weighted-johnson.tex`, ~9 pages)
+A short mathematical note (with a fully reproducible verification package)
+on the operator norm of weighted inclusion matrices between adjacent levels
+of the Boolean lattice, plus an application to a squarefree arithmetic
+compression of a von Mangoldt-type operator.
 
-## Abstract (short)
+**Paper:** [PDF](paper/weighted-johnson.pdf) ·
+[LaTeX source](paper/weighted-johnson.tex) ·
+[proof outline](proofs/proof-outline.md) ·
+[reproducibility](docs/reproducibility.md)
 
-For weights `a = (a_1, …, a_m)` and `1 ≤ k ≤ m`, let
+## Abstract
 
-```
-U_k(a) : H_k → H_{k-1}
-```
-
-be the weighted up-operator on the Boolean lattice — the weighted `(k, k−1)`
-inclusion matrix — where `H_j = ℓ²([m] choose j)` has orthonormal basis
-`{e_S : |S| = j}`, and
-
-```
-(U_k(a) f)(S) = Σ_{i ∉ S} a_i f(S ∪ {i}),   |S| = k − 1.
-```
-
-We prove the sharp inequality
+For `a = (a₁,…,a_m) ∈ ℂᵐ` and `1 ≤ k ≤ m`, let `U_k(a)` be the weighted
+up-operator — the weighted `(k, k−1)` inclusion matrix — acting from
+`H_k = ℓ²([m] choose k)` to `H_{k−1} = ℓ²([m] choose k−1)` (orthonormal
+subset basis) by
 
 ```
-‖U_k(a)‖² ≤ k(m − k + 1)/m · Σᵢ |aᵢ|²
+(U_k(a) f)(S) = Σ_{i ∉ S} aᵢ f(S ∪ {i}),    |S| = k − 1.
 ```
 
-with equality for all `a` at the endpoints `k = 1, m` and, for interior `k`
-and `a ≠ 0`, if and only if `|a₁| = … = |aₘ|`. The classical equal-weight
-identity `‖U_k(1)‖² = k(m − k + 1)` is the case `a = 1`.
-
-## Exact theorem statement
-
-**Theorem.** For all `m ≥ 2`, `1 ≤ k ≤ m`, and `a ∈ ℝᵐ`,
+The paper proves the sharp inequality
 
 ```
-‖U_k(a)‖² ≤ k(m − k + 1)/m · Σᵢ aᵢ² .
+‖U_k(a)‖² ≤ k(m − k + 1)/m · Σᵢ |aᵢ|²,
 ```
 
-The constant `C(m, k) = k(m − k + 1)/m` is best possible. Moreover:
+with an exact equality classification, and applies it to an arithmetic
+operator on squarefree integers.
 
-1. for `k = 1` and `k = m`, equality holds for every `a`;
-2. for `1 < k < m` and `a ≠ 0`, equality holds **iff** `|a₁| = ⋯ = |aₘ|`.
+## Main theorem
 
-The same statement holds for complex weights `a ∈ ℂᵐ` with `Σᵢ |aᵢ|²`
-(two-sided unitary phase reduction, Corollary 1 in the paper).
-
-## Why the constant is the right one
-
-At `a = 1` the operator is the classical Boolean up-operator, whose top
-singular value squared is exactly `k(m − k + 1)` (Johnson-scheme spectrum).
-Since `Σᵢ 1² = m`, the bound reads `k(m − k + 1) ≤ C(m,k) · m` with equality,
-so no smaller constant works at any level: the rescaled classical constant
-is optimal, and the theorem says generic weights can never beat it. For
-generic `a` the association-scheme diagonalization is unavailable, so the
-weighted statement is out of reach of the classical spectral toolkit.
-
-## Proof strategy
-
-A coordinate-deletion induction (strong induction on `m`, simultaneous in
-`k`): deleting a coordinate gives the exact block form
-`U_k(a) ≃ [[U_k(a′), aₘ I], [0, U_{k−1}(a′)]]`; a block-norm comparison
-reduces the top eigenvalue to a `2 × 2` corner matrix; the induction
-hypothesis bounds its two diagonal entries; and the scalar closure
-inequality closes the argument because the squared defect factors as the
-perfect square
+For all `m ≥ 2`, `1 ≤ k ≤ m`, and `a ∈ ℂᵐ`,
 
 ```
-4k(k−1)(m−k)(m−k+1) / (m²(m−1)²) · ((m−1)t − 1)² ≥ 0,
+‖U_k(a)‖² ≤ (k(m − k + 1) / m) · Σᵢ |aᵢ|².
 ```
 
-an identity in general `(m, k, t)`, with equality iff `t = 1/(m−1)`.
-Equality cases are obtained by tracing equality through every step.
-See `proofs/proof-outline.md` for the dependency map.
+The indexing is exact: `U_k(a)` maps level `k` down to level `k − 1`, and
+the sum defining `(U_k(a)f)(S)` runs over the `m − k + 1` coordinates
+`i ∉ S`. By complement duality the same bound holds for the weighted
+down-operators `U_k(a)*`.
 
-## Arithmetic application (Section 6)
+## Sharpness
 
-The paper includes a self-contained application: the von Mangoldt operator
-`T_N y(r) = Σ_{k≤N/r} Λ(k) y(rk)` on the weighted space `ℓ²({1..N}, φ)`,
-compressed to squarefree indices. The compression is entrywise a sum of
+The constant `C(m,k) = k(m−k+1)/m` cannot be lowered: at `a = 1` the
+operator is the classical Boolean up-operator with
+`‖U_k(1)‖² = k(m−k+1)` exactly, while `Σᵢ |1|² = m`.
+
+Equality classification (for `a ≠ 0`):
+
+- `k = 1` or `k = m`: equality for every `a`;
+- `1 < k < m`: equality **iff** all `|aᵢ|` are equal.
+
+Generic weights destroy the association-scheme diagonalization, so the
+weighted statement is out of reach of the classical Johnson-scheme spectral
+method; the proof replaces it with a coordinate-deletion induction.
+
+## Proof overview
+
+A two-page induction with a scalar closure step:
+
+1. **Phase reduction.** `U_k(a) = D_r U_k(|a|) D_c` (diagonal unitaries),
+   so it suffices to treat nonnegative weights.
+2. **Coordinate deletion.** Splitting on the last coordinate gives the
+   exact block form `U_k(a) ≃ [[U_k(a′), aₘ I], [0, U_{k−1}(a′)]]`.
+3. **Corner comparison.** The top eigenvalue of `U_k(a)U_k(a)*` reduces to
+   a `2×2` corner matrix whose diagonal entries the induction hypothesis
+   bounds.
+4. **Scalar closure.** The remaining one-variable inequality closes
+   because the squared defect factors as a perfect square,
+
+   ```
+   4k(k−1)(m−k)(m−k+1) / (m²(m−1)²) · ((m−1)t − 1)² ≥ 0,
+   ```
+
+   an identity in general `(m, k, t)` — equality iff `t = 1/(m−1)`, which
+   drives the equality classification.
+
+See `proofs/proof-outline.md` for the dependency map and
+`proofs/operator-definitions.md` for conventions.
+
+## Arithmetic application (Section 6 of the paper)
+
+On `ℓ²({1..N}, φ)` define the von Mangoldt operator
+`T_N y(r) = Σ_{k ≤ N/r} Λ(k) y(rk)` and let `P_sqf` be the orthogonal
+projection onto squarefree indices. Squarefree-to-squarefree edges are
+exactly `s = rp` with `p ∤ r`, so the compression is entrywise a sum of
 weighted Boolean-lattice incidence blocks with prime weights
-`a_p = log p/√(p−1)`, so the main theorem applies level by level, and
-exact level orthogonality (via the adjoint `S*S` argument) gives
+`a_p = log p / √(p−1)`. Level orthogonality (via the adjoint `S*S`
+argument, using both domain and range decompositions) gives
 
 ```
-||P_sqf T_N P_sqf||² = sup_k ||V_k||² ≤ k_max(N) · Σ_{p≤N} (log p)²/(p−1)
-                     = (1/2 + o(1)) (log N)³ / log log N.
+‖P_sqf T_N P_sqf‖² = sup_k ‖V_k‖² ≤ k_max(N) · Σ_{p≤N} (log p)²/(p−1)
+                   = (1/2 + o(1)) · (log N)³ / log log N,
 ```
 
-Scope: this bounds the squarefree compression only — **not** the full
-operator `T_N`. The section explicitly disclaims any `||T_N|| = O(log N)`
-consequence, any Nyman–Beurling distance decay, any zero-free region, and
-any RH connection; RH appears in neither title nor abstract. Regression
-code: `verification/verify_arithmetic.py`.
+unconditionally. **Scope:** this bounds the squarefree compression only —
+not the full operator `T_N`. It does **not** imply `‖T_N‖ = O(log N)`, does
+not address Nyman–Beurling distances or zero-free regions, and makes no
+claim about the Riemann Hypothesis (which appears in neither title nor
+abstract). A complementary proved lower bound,
+`‖T_N‖ ≥ (1/√2 + o(1)) log N` via the adjoint test vector `T_N* e₁`, is
+recorded in the paper. Regression code:
+[`verification/verify_arithmetic.py`](verification/verify_arithmetic.py).
 
-## Compile the paper
+## Reproducing the checks
 
-```
-cd paper
-tectonic weighted-johnson.tex     # or: pdflatex weighted-johnson.tex (twice)
-```
-
-No custom style files are required (standard `article` class).
-
-## Reproduce the computational checks
+Requires Python 3.12+ with `numpy==2.4.3` and `sympy==1.14.0`
+(see `verification/requirements.txt`); no other services or dependencies.
 
 ```
 cd verification
-pip install -r requirements.txt   # numpy==2.4.3, sympy==1.14.0
-python3 verify.py                 # ~2–5 min, ends with "ALL RECEIPTS COMPLETE"
+pip install -r requirements.txt
+python3 verify.py                # ~2–5 min; final line: ALL RECEIPTS COMPLETE
+python3 verify_arithmetic.py     # final line: ALL PASS
 ```
 
-```
-python3 verify_arithmetic.py      # Section 6 regression, ends with "ALL PASS"
-```
+`verify.py` checks the general-symbolic closure identity in parameters
+`(m, k, t)` (a universal symbolic proof) and runs exact/floating-point
+regression batteries built from the definition alone.
+`verify_arithmetic.py` rebuilds the Section 6 object from the matrix
+definition and checks the compression identity, cross-level block
+diagonality of `S*S`, the certified inequality, and the adjoint
+lower-bound identity. Finite tests are regression evidence, **not** proofs
+of universal statements; the paper's proofs stand on their own. To rebuild
+the PDF: `cd paper && tectonic weighted-johnson.tex` (or `pdflatex` ×2).
+Failure behavior: any check violation prints `FAIL` with the offending
+instance and the script exits non-zero.
 
-The symbolic closure identity is verified as an identity in **general
-symbols** `(m, k, t)` — not from finite samples. Exact and symbolic checks
-are separated from illustrative regression tests inside `verify.py`
-(sections 3a/3b symbolic; section 7 exact-rational regression). See
-`verification/README.md`.
+## Research and review status
 
-## Known limitations
+- **Proof status:** self-contained written proof; every identity stated in
+  closed form; no step requires computer assistance.
+- **Machine verification:** general-symbolic closure identity +
+  independent from-the-definition batteries; zero violations.
+- **Adversarial AI review:** multiple isolated AI referee rounds, including
+  a fresh reviewer with no project context; findings repaired. These are
+  self-checks, **not peer review**.
+- **Independent human mathematical review: pending.**
+- **Novelty verification: incomplete.** The equal-weight ray is classical
+  and cited; the weighted sharp bound with equality classification surfaced
+  in no surveyed source, but MathSciNet-level checks remain open
+  (classification: PLAUSIBLY NEW — SEARCH INCOMPLETE). See
+  [`docs/limitations.md`](docs/limitations.md).
 
-- The method is specific to the Boolean lattice level structure.
-- Only the top eigenvalue of `U_k(a) U_k(a)ᵀ` is controlled, not the full spectrum.
-- Novelty: the equal-weight ray is classical and cited. The weighted sharp
-  bound with its equality classification surfaced in no surveyed source, but
-  a full MathSciNet-level literature check by a human remains open
-  (classification: PLAUSIBLY NEW — SEARCH INCOMPLETE).
-- Connections to Riemann-hypothesis-type operator programs are historical
-  motivation only; this paper makes **no** RH claim. See `docs/limitations.md`.
+## Citation and licensing
 
-## Verification and review status (accurate)
-
-- Every identity used in the proof is written in closed form in the paper;
-  no proof step requires computer assistance.
-- Machine verification: general-symbolic proof of the closure identity and
-  an independent from-the-definition battery (exact block/Gram/duality/phase
-  identities, sharpness for `m ≤ 8`, 30 exact rational inequality instances,
-  zero violations).
-- The manuscript passed independent adversarial AI review rounds with zero
-  mathematical objections. **Independent human review has not yet been
-  performed**; this repository is offered to support exactly that review.
-
-## AI assistance disclosure
-
-The proof search, symbolic verification, literature screening, and
-manuscript preparation were performed with substantial assistance from an
-AI research agent (LLM-based, 2026). The human author takes full
-responsibility for all claims. No AI system is presented as an author, and
-no AI review is presented as peer review. See `docs/ai-assistance.md` for the
-role-by-role disclosure.
-
-## Citation
-
-See `CITATION.cff`. Recommended citation until a journal version exists:
+See [`CITATION.cff`](CITATION.cff). Recommended citation until a journal
+version exists:
 
 > Gerald, "A Sharp Norm Bound for Weighted Up-Operators on the Boolean
-> Lattice," GitHub repository GeWoHu/weighted-johnson-inequality, commit
-> e46b158, 2026. https://github.com/GeWoHu/weighted-johnson-inequality
+> Lattice," GitHub repository GeWoHu/weighted-johnson-inequality, 2026.
+> https://github.com/GeWoHu/weighted-johnson-inequality
 
-Author full name and affiliation will be supplied before journal submission;
-no DOI, journal, or peer-review status is claimed.
+The author's full legal name and affiliation will be supplied before
+submission (placeholder retained deliberately; nothing invented).
+**Licensing:** proposed CC BY 4.0 (text and documentation) and MIT
+(original verification code); not yet activated — until the author's
+license decision is recorded, all rights are reserved.
 
-## License
+## AI assistance
 
-Licensing is pending the author's choice (options under consideration:
-CC BY 4.0 for the text, MIT for the verification code). Until then, all
-rights are reserved.
+Proof search, symbolic verification, literature screening, and manuscript
+preparation were performed with substantial assistance from an AI research
+agent (LLM-based, 2026). The human author takes full responsibility for
+all claims. No AI system is presented as an author and no AI review is
+presented as peer review. Details: [`docs/ai-assistance.md`](docs/ai-assistance.md).
 
 ## Repository layout
 
 ```
 paper/         manuscript (tex, pdf) + references.bib
 proofs/        proof outline, operator definitions, verification notes
-verification/  verify.py + pinned requirements + instructions
-docs/          theorem statement, reproducibility, limitations
+verification/  verify.py, verify_arithmetic.py, pinned requirements
+docs/          reproducibility, limitations, theorem statement, AI disclosure
 ```
