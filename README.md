@@ -155,8 +155,9 @@ version exists:
 > Lattice," GitHub repository GeWoHu/weighted-johnson-inequality, 2026.
 > https://github.com/GeWoHu/weighted-johnson-inequality
 
-The author's full legal name and affiliation will be supplied before
-submission (placeholder retained deliberately; nothing invented).
+The work is published as **Gerald, with substantial AI assistance**
+(owner decision, 2026-11-08). A full legal name and affiliation will be
+supplied before any journal submission (nothing invented).
 
 ## License
 
@@ -165,14 +166,12 @@ theorem and proof are publicly available for independent verification and
 reuse. The mathematical statement itself is not claimed as exclusive
 intellectual property.
 
-- **Manuscript, mathematical exposition, and documentation** (paper text,
-  `docs/`, `proofs/`, `README.md`): dedicated to the public domain under
-  [CC0 1.0 Universal](LICENSE-CC0), to the extent possible under law.
-  No attribution is required for reuse of the text.
-- **Verification software** (`verification/`): released under the
-  [MIT License](LICENSE-MIT). MIT's only condition for code reuse is
-  preservation of the copyright and permission notice in copies or
-  substantial portions of the software.
+- **Entire repository**: released under the [MIT License](LICENSE)
+  (owner-authorized 2026-11-08). MIT's only condition is preservation of
+  the copyright and permission notice in copies or substantial portions.
+- **Verification software** (`verification/`): additionally dedicated to
+  the public domain under [CC0 1.0 Universal](LICENSE-CC0), to the extent
+  possible under law — code reuse there needs no attribution.
 
 CC0 does not eliminate rights that cannot be waived under some legal
 systems, does not guarantee public-domain status in every jurisdiction,

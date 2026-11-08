@@ -3,7 +3,8 @@ message: "If you use this work, please cite the software repository as follows."
 title: "A Sharp Norm Bound for Weighted Up-Operators on the Boolean Lattice"
 type: software
 authors:
-  - name: "Gerald (full author name to be supplied before submission)"
+  - name: "Gerald"  # with substantial AI assistance; see README "AI assistance"
+license: MIT
 repository-code: "https://github.com/GeWoHu/weighted-johnson-inequality"
 date-released: 2026-11-01
 abstract: >-
