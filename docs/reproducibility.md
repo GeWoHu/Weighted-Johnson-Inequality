@@ -33,15 +33,20 @@ and the adjoint lower-bound identity. numpy only. Regression evidence;
 the proofs do not depend on it.
 
 ## Provenance of the manuscript
-This repository's `paper/weighted-johnson.tex` is the final submission
-manuscript of the underlying project (frozen 2026-10-31, sha256
-16142b3d79057ce5969f1563b8263d1886348cda72e781810e6011709d7b010e) with
-exactly one documented intentional difference: the closing paragraph of
-Appendix A was reworded to point at this repository's `verification/`
-directory instead of private project archives (a reproducibility-instruction
-change). **No mathematical statement, proof step, or citation was changed.**
-The mathematical content is identical to the frozen manuscript; the compiled
-PDF in this repository is built from the source alongside it.
+This repository's `paper/weighted-johnson.tex` is the living development line
+of the project. It descends from the manuscript frozen 2026-10-31 (git tag
+`pre-public-20261101`, source sha256 `68a61ff2...`), but it is NOT identical
+to it: the R2 revision of 2026-11-09 (external-review response) restricted the
+block and closure lemmas to the interior range $1<k<m$, split the ambient
+Boolean levels from the admissible subspaces in Section 6, corrected the
+inclusion-matrix rank attribution (Gottlieb 1966; Wilson 1990 diagonal form),
+downgraded the "exact singular value" phrasing to an optimal uniform bound,
+added the zeon/Lefschetz/log-concavity literature neighborhood, and moved the
+AI-assistance disclosure from the author line to the Acknowledgments. An
+earlier version of this document claimed identity with the frozen manuscript
+(hash `16142b3d...`) except for one reworded paragraph; that claim was
+incorrect and this paragraph supersedes it. The current source hash is recorded
+in `MANIFEST.sha256`; the compiled PDF is built from the source alongside it.
 
 ## Verification status
 - Written proof: self-contained, elementary (linear algebra, induction,

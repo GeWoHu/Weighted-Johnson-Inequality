@@ -128,3 +128,4 @@ if __name__ == "__main__":
     Ns = [int(x) for x in sys.argv[1:]] or [30, 60, 120, 240, 480]
     allok = all(run(N) for N in Ns)
     print("ALL PASS" if allok else "FAIL")
+    sys.exit(0 if allok else 1)

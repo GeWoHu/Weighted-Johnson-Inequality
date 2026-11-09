@@ -166,12 +166,15 @@ theorem and proof are publicly available for independent verification and
 reuse. The mathematical statement itself is not claimed as exclusive
 intellectual property.
 
-- **Entire repository**: released under the [MIT License](LICENSE)
-  (owner-authorized 2026-11-08). MIT's only condition is preservation of
-  the copyright and permission notice in copies or substantial portions.
-- **Verification software** (`verification/`): additionally dedicated to
-  the public domain under [CC0 1.0 Universal](LICENSE-CC0), to the extent
-  possible under law — code reuse there needs no attribution.
+- **Code** (`verification/`, CI configuration): released under the
+  [MIT License](LICENSE-MIT) (owner-authorized 2026-11-08). MIT's only
+  condition is preservation of the copyright and permission notice in
+  copies or substantial portions.
+- **Manuscript, proofs, and documentation** (`paper/`, `proofs/`, `docs/`,
+  README): dedicated to the public domain under
+  [CC0 1.0 Universal](LICENSE-CC0), to the extent possible under law —
+  reuse of the text needs no attribution.
+  (`LICENSE` carries the MIT text with this scope stated at the top.)
 
 CC0 does not eliminate rights that cannot be waived under some legal
 systems, does not guarantee public-domain status in every jurisdiction,

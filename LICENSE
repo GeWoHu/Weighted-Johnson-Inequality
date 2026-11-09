@@ -20,7 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Scope: this license applies to the entire repository (owner-authorized
-2026-11-08). Contents of verification/ are additionally dedicated to the
-public domain under CC0 1.0 (see LICENSE-CC0) to the extent possible under
-law; see README "License".
+Scope: this license applies to the code in verification/ and the CI
+configuration (owner-authorized 2026-11-08). The manuscript, proofs, and
+documentation (paper/, proofs/, docs/, README) are dedicated to the public
+domain under CC0 1.0 (see LICENSE-CC0) to the extent possible under law;
+see README "License". This is the single authoritative scope statement.

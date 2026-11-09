@@ -151,6 +151,7 @@ for trial in range(30):
     worst = max(worst, float(ratio))
     if lam_max > C(mm, kk) * s:
         viol += 1
+assert viol == 0, f"exact rational regression: {viol} violations"
 ok(f"7. 30 exact rational instances (sympy real_roots): violations={viol}, worst ratio={worst:.6f}")
 
 # ---- 8. Edge cases
@@ -186,5 +187,6 @@ for _ in range(200):
                        [np.linalg.svd(Qm, compute_uv=False)[0], np.linalg.eigvalsh(R)[-1]]])
     if np.linalg.eigvalsh(M)[-1] > np.linalg.eigvalsh(corner)[-1] + 1e-10:
         bad += 1
+assert bad == 0, f"block-norm stress: {bad} violations"
 print(f"10. block-norm lemma 200 random instances: violations={bad}")
 print("ALL RECEIPTS COMPLETE")

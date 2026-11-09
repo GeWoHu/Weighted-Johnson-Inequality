@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage[margin=1.1in]{geometry}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
 
@@ -11,10 +13,9 @@
 \newtheorem{remark}{Remark}
 
 \title{A sharp norm bound for weighted up-operators on the Boolean lattice}
-\author{Gerald\thanks{Published as ``Gerald, with AI assistance'' (owner decision 2026-11-08); full legal name and affiliation to be supplied before journal submission.}
-\and with assistance from an AI research agent\thanks{AI-assisted proof
-verification and manuscript preparation; disclosure per journal policy.}}
-\date{\today}
+\author{Gerald\thanks{Correspondence: \texttt{gewohu@users.noreply.github.com};
+full legal name and affiliation to be supplied before journal submission.}}
+\date{November 9, 2026}
 
 \begin{document}
 \maketitle
@@ -106,13 +107,20 @@ operators, and hence \eqref{eq:classical}, is classical; see
 \cite{bannai1984}. Our theorem contains \eqref{eq:classical} as the ray
 $a=\mathbf 1$ and does not claim it.
 
-\textbf{Inclusion matrices.} Wilson's theorem on inclusion matrices over
-fields of characteristic zero determines the \emph{rank} of unweighted
-inclusion matrices (see \cite{wilson1984} and the encyclopedic treatment
-of Johnson-scheme spectra in \cite{godsilroyle2001}); it is a rank statement, not a norm statement, and it
-does not carry weights. Singular-value information for weighted inclusion
-matrices does not appear to be tabulated; the present result gives the top
-singular value exactly for the Boolean level pairs.
+\textbf{Inclusion matrices.} Gottlieb's theorem determines the \emph{rank} of
+the inclusion matrix between complementary levels over fields of
+characteristic zero \cite{gottlieb1966}; Wilson's Smith-normal-form theorem
+gives the precise integral diagonal form of general inclusion matrices
+\cite{wilson1990}; see also the encyclopedic treatment of Johnson-scheme
+spectra in \cite{godsilroyle2001}; the diagonal-form technology also underlies
+the Erd\H os--Ko--Rado-type intersection applications surveyed in
+\cite{wilson1984}. These are rank and integrality statements;
+they carry no weights and do not determine singular values. Singular-value
+information for weighted inclusion matrices does not appear to be tabulated;
+the present result gives the \emph{optimal uniform upper bound} in terms of
+$\|a\|_2$ for the Boolean level pairs --- for a fixed general weight vector
+$a$ the top singular value need not attain the bound (it does exactly when
+$|a_1|=\cdots=|a_m|$, or at $k=1,m$).
 
 \textbf{Differential posets and $\mathfrak{sl}_2$ calculi.} Stanley's
 differential posets \cite{stanley1988} provide weighted up/down calculus
@@ -157,7 +165,10 @@ reduction. We assume $a\ge0$ from now on.
 
 \subsection{Block decomposition by deleting a coordinate}\label{subsec:block}
 
-Write $a=(a',a_m)$ with $a'\in\mathbb{R}^{m-1}$. Order the rows by
+Throughout this subsection assume $1<k<m$; the endpoint cases $k=1$ and $k=m$
+are settled directly at the start of the proof of Theorem~\ref{thm:main}, and
+the blocks displayed below are not defined there. Write $a=(a',a_m)$ with
+$a'\in\mathbb{R}^{m-1}$. Order the rows by
 $(k-1)$-sets not containing $m$ first, then those containing $m$, and the
 columns likewise. Since the $(S,T)$ entry is nonzero only when
 $T=S\cup\{i\}$,
@@ -247,7 +258,7 @@ even),
 \subsection{Scalar closure}\label{subsec:closure}
 
 \begin{lemma}\label{lem:closure}
-For $m\ge3$, $1\le k\le m$, $t\ge0$, with $A,B$ as above and
+For $m\ge3$, $1<k<m$, $t\ge0$, with $A,B$ as above and
 $C=C(m,k)=\frac{k(m-k+1)}{m}$,
 \[
 \lambda_{\max}\begin{pmatrix}A+t&\sqrt{tB}\\ \sqrt{tB}&B\end{pmatrix}
@@ -302,8 +313,9 @@ $\beta^2=Bs$. Thus equality holds
 at the subproblem $(m-1,k)$ on $a'$ (and at $(m-1,k-1)$). For $m\ge4$ at
 least one of these subproblems is interior --- if $2\le k\le m-2$ then
 $(m-1,k)$ is; if $k=2$ (resp.\ $k=m-1$) then $(m-1,2)$ (resp.\
-$(m-1,m-2)$) is interior for $m\ge4$ --- and the strengthened induction
-hypothesis yields $|a_1|=\cdots=|a_{m-1}|$; then $t=\frac1{m-1}$ gives
+$(m-1,m-2)$) is interior for $m\ge4$ --- and the induction hypothesis for the
+equality classification, applied to that interior subproblem, yields
+$|a_1|=\cdots=|a_{m-1}|$; then $t=\frac1{m-1}$ gives
 $a_m^2=s/(m-1)$, the same common value. The remaining base $m=3,k=2$ is
 computed exactly: with $x_i=a_i^2$ and $s=x_1+x_2+x_3$, the matrix
 $\frac43 s\,I-G_2(a)$ has principal minors
@@ -332,8 +344,15 @@ homogeneous components of the Boolean lattice with
 $[D,U]=U$-type relations after weighting by rank, and the spectra follow
 from the Johnson scheme \cite{srinivasan2011}. For generic $a$ the
 commutation relations acquire non-scalar defect terms and no association
-scheme survives; the deletion induction appears to be the only route to a
-sharp general result.
+scheme survives; the standard equal-weight diagonalization does not directly
+extend, and the deletion induction is the route that yields the sharp general
+result proved here. The up/down-operator calculus on the Boolean lattice also
+appears in the zeon algebra and its representation-theoretic treatment
+\cite{feinsilver2008}, in the strong Lefschetz property for Artinian Gorenstein
+algebras via higher Hessians \cite{maeno2009,gondim2017}, and in log-concave
+polynomial methods for matroid base counting \cite{anari2024}; none of these
+addresses weighted norm bounds, but they form the neighborhood in which the
+novelty of the present inequality should be assessed.
 \end{remark}
 
 \section{Application to a squarefree arithmetic compression}\label{sec:arithmetic}
@@ -367,8 +386,10 @@ so that $\|T_N\|_{\ell^2(\varphi)}=\|\widetilde T_N\|_{\ell^2}$ exactly.
 Let $P_{\mathrm{sqf}}$ be the orthogonal projection of $\ell^2$ onto the
 span of the squarefree indices. Squarefree integers whose prime factors
 lie in $\mathcal P$ are in bijection with subsets $S\subseteq[m]$ via
-$r\leftrightarrow\{i: p_i\mid r\}$; write $H_j$ for the span of the
-squarefree indices with exactly $j$ prime factors, so that
+$r\leftrightarrow\{i: p_i\mid r\}$; write $\mathcal H_j=\ell^2\binom{[m]}{j}$ for the full
+Boolean level and $H_j\subseteq\mathcal H_j$ for the coordinate subspace
+spanned by the subsets of size $j$ whose product of primes is $\le N$ (the
+squarefree indices with exactly $j$ prime factors), so that
 $P_{\mathrm{sqf}}\ell^2=\bigoplus_{j\ge 0}H_j$.
 
 \subsection{The compression identity}
@@ -382,9 +403,10 @@ admissible levels: for $|S|=k-1$ admissible,
 (V_k f)(S)=\sum_{\substack{i\notin S\\ \prod_{j\in S}p_j\cdot p_i\le N}}
 a_i\, f(S\cup\{i\}),\qquad |S|=k-1,
 \]
-extended to all of $H_k$ by $V_k f=V_k P_{\mathrm{adm},k}f$, where
-$P_{\mathrm{adm},k}$ is the orthogonal projection of $H_k$ onto the span
-of the admissible $k$-sets.
+equivalently $V_k=P_{\mathrm{adm},k-1}\,U_k(a)\,P_{\mathrm{adm},k}$, where
+$P_{\mathrm{adm},j}$ is the orthogonal projection of $\mathcal H_j$ onto
+$H_j$; since the admissible sets form a down-set, the range projection is
+redundant and $V_k$ maps $H_k$ into $H_{k-1}$.
 
 
 \begin{lemma}[compression identity]\label{lem:compression}
@@ -531,7 +553,13 @@ sphere $\{|a|^2=1\}$. (3) Analogous sharp bounds for the two-step
 operators $U_k(a)U_{k+1}(a)$, where the corner comparison no longer
 closes at one variable.
 
+\section*{Acknowledgments}
+Proof exploration, adversarial verification, and manuscript preparation were
+substantially assisted by an AI research agent. All statements, proofs, and
+claims are those of the author, who takes full responsibility for them.
+
 \begin{thebibliography}{9}
+\raggedright
 \bibitem{srinivasan2011}
 M.~K.~Srinivasan, \emph{Counting spanning trees of the hypercube and its
 $q$-analogs by explicit block diagonalization}, arXiv:1104.1481, 2011;
@@ -562,6 +590,27 @@ R.~M.~Wilson, \emph{The exact bound in the Erd\H{o}s--Ko--Rado theorem},
 Combinatorica \textbf{4} (1984), 247--257.
 \bibitem{montgomeryvaughan2007}
 H.~L.~Montgomery and R.~C.~Vaughan, \emph{Multiplicative Number Theory. I. Classical Theory}, Cambridge Studies in Advanced Mathematics \textbf{107}, Cambridge University Press, Cambridge, 2007.
+\bibitem{gottlieb1966}
+C.~S.~Gottlieb, \emph{A certain class of incidence matrices},
+Proc. Amer. Math. Soc.\ \textbf{17} (1966), 1233--1237.
+\bibitem{wilson1990}
+R.~M.~Wilson, \emph{A diagonal form for the incidence matrices of
+t-subsets vs.\ $k$-subsets}, European J. Combin.\ \textbf{11} (1990),
+609--615.
+\bibitem{feinsilver2008}
+F.~Feinsilver, \emph{Zeon algebra, Fock space, and Markov chains},
+Commun. Stochastic Anal.\ \textbf{2} (2008).
+\bibitem{maeno2009}
+T.~Maeno and J.~Watanabe, \emph{Lefschetz elements of Artinian Gorenstein
+algebras and Hessians of homogeneous polynomials}, Illinois J. Math.\
+\textbf{53} (2009), 591--603.
+\bibitem{gondim2017}
+R.~Gondim, \emph{On higher Hessians and the Lefschetz properties},
+J. Algebra\ \textbf{489} (2017), 241--263.
+\bibitem{anari2024}
+N.~Anari, K.~Liu, S.~Oveis Gharan and C.~Vinzant, \emph{Log-concave
+polynomials II: high-dimensional walks and an FPRAS for counting bases of a
+matroid}, Ann. of Math.\ \textbf{199} (2024), 259--299.
 \bibitem{godsilroyle2001}
 C.~D.~Godsil and G.~F.~Royle, \emph{Algebraic Graph Theory}, Graduate
 Texts in Mathematics \textbf{207}, Springer, New York, 2001.
