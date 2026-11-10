@@ -82,7 +82,7 @@ A two-page induction with a scalar closure step:
 See `proofs/proof-outline.md` for the dependency map and
 `proofs/operator-definitions.md` for conventions.
 
-## Arithmetic application (Section 6 of the paper)
+## Arithmetic application (Appendix A of the paper)
 
 On `ℓ²({1..N}, φ)` define the von Mangoldt operator
 `T_N y(r) = Σ_{k ≤ N/r} Λ(k) y(rk)` and let `P_sqf` be the orthogonal
@@ -116,15 +116,21 @@ cd verification
 pip install -r requirements.txt
 python3 verify.py                # ~2–5 min; final line: ALL RECEIPTS COMPLETE
 python3 verify_arithmetic.py     # final line: ALL PASS
+python3 complex_weights.py       # seconds; final line: ALL PASS
 ```
 
 `verify.py` checks the general-symbolic closure identity in parameters
 `(m, k, t)` (a universal symbolic proof) and runs exact/floating-point
 regression batteries built from the definition alone.
-`verify_arithmetic.py` rebuilds the Section 6 object from the matrix
+`verify_arithmetic.py` rebuilds the Appendix A object from the matrix
 definition and checks the compression identity, cross-level block
 diagonality of `S*S`, the certified inequality, and the adjoint
-lower-bound identity. Finite tests are regression evidence, **not** proofs
+lower-bound identity. `complex_weights.py` (added 2026-11-09, ported from
+the consolidated Boolean-Lattice companion) checks the two-sided phase
+identity U_k(a) = D_r U_k(|a|) D_c entrywise, the bound over random
+complex draws, and exact flat-phase equality — all dtype-preserving; the
+one-sided conjugation form claimed in that companion's v1.1 remark is
+false for general phases and is deliberately not asserted here. Finite tests are regression evidence, **not** proofs
 of universal statements; the paper's proofs stand on their own. To rebuild
 the PDF: `cd paper && tectonic weighted-johnson.tex` (or `pdflatex` ×2).
 Failure behavior: any check violation prints `FAIL` with the offending
@@ -195,6 +201,22 @@ presented as peer review. Details: [`docs/ai-assistance.md`](docs/ai-assistance.
 ```
 paper/         manuscript (tex, pdf) + references.bib
 proofs/        proof outline, operator definitions, verification notes
-verification/  verify.py, verify_arithmetic.py, pinned requirements
+verification/  verify.py, verify_arithmetic.py, complex_weights.py,
+               pinned requirements
 docs/          reproducibility, limitations, theorem statement, AI disclosure
 ```
+
+## Repository consolidation (2026-11-09)
+
+This repository is the **canonical** home of the theorem. The earlier
+companion repository [GeWoHu/Boolean-Lattice](https://github.com/GeWoHu/Boolean-Lattice)
+published the same result (first release 2026-10-29, tags `v1.0`/`v1.1`
+remain frozen priority evidence) and is now archived with a pointer here.
+From that companion this repository absorbed: a dtype-preserving complex
+verification script (`verification/complex_weights.py`) and the corrected
+two-sided phase identity — the companion's v1.1 remark stated the
+one-sided form `U_k(σ·a) = D_{k−1} U_k(a) D_k` for phases `σ ∈ (S¹)ᵐ`,
+which is false in general (it holds only for signs); the correct form is
+`U_k(σ·a) = D*_{k−1} U_k(a) D_k`, equivalent to `eq:phase` here. The
+squarefree arithmetic application moved from Section 6 to Appendix A to
+reflect its supporting role.

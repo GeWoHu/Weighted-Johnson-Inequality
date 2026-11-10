@@ -47,3 +47,17 @@ arguments; N up to ~1600 on a laptop takes under a minute per N).
 Expected final line: `ALL PASS`. numpy only (already in requirements.txt).
 These are regression/falsification checks; the paper's proofs do not depend
 on them.
+
+## complex_weights.py
+
+Dtype-preserving complex-weight regression (ported 2026-11-09 from the
+archived GeWoHu/Boolean-Lattice companion, which had a real-dtype table
+script that silently discarded imaginary parts):
+
+1. two-sided phase identity — entrywise `U_k(a) = D_r U_k(|a|) D_c` with
+   the manuscript's `eq:phase` conventions (max deviation < 1e-12);
+2. bound — worst ratio over 300 Gaussian complex draws per `(m,k) <= 1`;
+3. equality — flat phase vectors attain ratio exactly 1.
+
+Run: `python3 complex_weights.py` (deterministic seed 11; ~0.2 s).
+Expected final line: `ALL PASS`; any failure exits 1.

@@ -52,6 +52,12 @@ in `MANIFEST.sha256`; the compiled PDF is built from the source alongside it.
 - Written proof: self-contained, elementary (linear algebra, induction,
   AM–GM); no step requires computer assistance.
 - Machine checks: general-symbolic closure identity + independent
-  from-the-definition battery, zero violations.
+  from-the-definition battery, zero violations; complex-weight battery
+  (`verification/complex_weights.py`, added with the 2026-11-09
+  consolidation from the archived Boolean-Lattice companion) checks the
+  two-sided phase identity, the bound over random complex draws, and
+  exact flat-phase equality, all dtype-preserving.
+- The R3 consolidation moved the squarefree arithmetic application from
+  Section 6 to Appendix A.
 - Independent adversarial AI review: zero mathematical objections.
 - Independent human review: pending (this repository is prepared for it).
